@@ -4,6 +4,8 @@ dist/
 build/
 *.py[cod]
 node_modules/
+env/
+archive.ics.uci.edu/
 
 # Compiled javascript
 counterfactual_explorer/static/
