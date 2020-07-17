@@ -142,10 +142,10 @@ setup_args = dict(
     install_requires=[
         'ipywidgets>=7.0.0',
         'dice-ml>=0.2',
+        'tensorflow>=2',
+        'scikit-learn',
         'pandas',
         'numpy',
-        'scikit-learn',
-        'tensorflow>=2',
     ],
     packages=find_packages(),
     zip_safe=False,
