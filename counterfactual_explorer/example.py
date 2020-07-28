@@ -1,11 +1,11 @@
-import ipywidgets as widgets
-from traitlets import Unicode
+from traitlets import Unicode,Int,List,Any,Float,default,validate
+from ipywidgets import Checkbox
 
 # See js/lib/example.js for the frontend counterpart to this file.
 
-@widgets.register
+
 class HelloWorld(widgets.DOMWidget):
-    """An example widget."""
+    #An example widget
 
     # Name of the widget view class in front-end
     _view_name = Unicode('HelloView').tag(sync=True)
@@ -28,4 +28,5 @@ class HelloWorld(widgets.DOMWidget):
     # Widget properties are defined as traitlets. Any property tagged with `sync=True`
     # is automatically synced to the frontend *any* time it changes in Python.
     # It is synced back to Python from the frontend *any* time the model is touched.
-    value = Unicode('Hello World!').tag(sync=True)
+
+    value = Int(0).tag(sync=True)#Unicode('Hello Worl!').tag(sync=True)
