@@ -1,17 +1,14 @@
-from traitlets import Unicode,Int,List,Any,Float,default,validate
-from ipywidgets import Checkbox
+from traitlets import Unicode, Bool
+from ipywidgets import DOMWidget
 
-# See js/lib/example.js for the frontend counterpart to this file.
+# See js/lib/widget.js for the frontend counterpart to this file.
 
-
-class HelloWorld(widgets.DOMWidget):
-    #An example widget
-
+class Settings(DOMWidget):
     # Name of the widget view class in front-end
-    _view_name = Unicode('HelloView').tag(sync=True)
+    _view_name = Unicode('SettingsView').tag(sync=True)
 
     # Name of the widget model class in front-end
-    _model_name = Unicode('HelloModel').tag(sync=True)
+    _model_name = Unicode('SettingsModel').tag(sync=True)
 
     # Name of the front-end module containing widget view
     _view_module = Unicode('counterfactual_explorer').tag(sync=True)
@@ -29,4 +26,4 @@ class HelloWorld(widgets.DOMWidget):
     # is automatically synced to the frontend *any* time it changes in Python.
     # It is synced back to Python from the frontend *any* time the model is touched.
 
-    value = Int(0).tag(sync=True)#Unicode('Hello Worl!').tag(sync=True)
+    checked = Bool(False).tag(sync=True)
