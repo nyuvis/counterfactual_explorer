@@ -1,4 +1,4 @@
-from traitlets import Unicode, Bool
+from traitlets import Unicode, Bool, Int
 from ipywidgets import DOMWidget
 
 # See js/lib/widget.js for the frontend counterpart to this file.
@@ -27,3 +27,4 @@ class Settings(DOMWidget):
     # It is synced back to Python from the frontend *any* time the model is touched.
 
     checked = Bool(False).tag(sync=True)
+    slidervalue=Int(0).tag(sync=True)
