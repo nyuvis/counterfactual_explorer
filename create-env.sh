@@ -1,9 +1,14 @@
 #!/bin/bash
 
-python -m venv env
-source env/bin/activate
-pip install -e .
+# create virtual environment
+python -m venv counterfactual_explorer
 
-source env/bin/activate
-jupyter nbextension install --py --symlink --sys-prefix counterfactual_explorer
-jupyter nbextension enable --py --sys-prefix counterfactual_explorer
+# activate virtual environment
+source counterfactual_explorer/bin/activate
+
+# install dependencies
+pip install -r requirements.txt
+
+# use virtual environment in jupyter
+pip install ipykernel==5.3.2
+python -m ipykernel install --user --name=counterfactual_explorer
