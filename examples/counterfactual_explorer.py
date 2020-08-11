@@ -257,7 +257,7 @@ def explore(dataname, modelname,cont_feat,outcome_name):
 
 def visualize_as_pcp():
     data_org=explore.dice_exp.org_instance
-    data_cf=explore.dice_exp.final_cfs_df
+    data_cf=explore.dice_exp.final_cfs_df_sparse
     outcome_name=explore.outcome_name
     vertical_stack = pd.concat([data_org, data_cf], axis=0)
 

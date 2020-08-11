@@ -1,6 +1,0 @@
-ipywidgets>=7.0.0
-dice-ml>=0.2
-tensorflow>=2
-scikit-learn
-pandas
-numpy
