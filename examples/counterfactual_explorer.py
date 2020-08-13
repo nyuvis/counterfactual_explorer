@@ -12,6 +12,7 @@ from ipywidgets import Checkbox, VBox, HBox, Label, interact, Box, FloatSlider, 
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 
 def explore(dataname, modelname,cont_feat,outcome_name):
@@ -259,6 +260,7 @@ def visualize_as_pcp():
     data_org=explore.dice_exp.org_instance
     data_cf=explore.dice_exp.final_cfs_df_sparse
     outcome_name=explore.outcome_name
+    cont_feat=explore.cont_feat
     vertical_stack = pd.concat([data_org, data_cf], axis=0)
 
     #have output be 0/1
@@ -290,12 +292,29 @@ def visualize_as_pcp():
                         ticktext = list(df1[i].unique()))
                 new_list.append(x)
 
-        fig = go.Figure(data=go.Parcoords(line=dict(color = df[explore.outcome_name],colorscale = "Bluered_r",showscale = True),
-                                        dimensions = list(new_list)))
-        #colorchoices: Electric, Viridis,**Bluered_r**,Cividis_r
+        fig = go.Figure(
+            data=go.Parcoords(
+                line=dict(
+                    color = df[explore.outcome_name],
+                    colorscale = [[0, 'red'], [0.5, 'red'], [0.5, 'blue'], [1, 'blue']],
+                    showscale = True,
+                    colorbar=dict(
+                        lenmode='pixels',
+                        len=75,
+                        tickmode='array',
+                        tickvals=[0.25, 0.75],
+                        ticktext=['0', '1']
+                    )
+                ),
+                dimensions = list(new_list)
+            )
+        )
+        
+
         fig.show()
 
-    parallel_coordinates(vertical_stack,explore.cont_feat)
+    parallel_coordinates(vertical_stack,cont_feat)
+    
 
 
 
@@ -314,3 +333,61 @@ def visualize_as_df(show_changes):
         explore.dice_exp.visualize_as_dataframe(show_only_changes=True)
     elif show_changes==False:
         explore.dice_exp.visualize_as_dataframe()
+
+        
+        
+        
+
+def visualize_as_radar():
+    data_org=explore.dice_exp.org_instance
+    data_cf=explore.dice_exp.final_cfs_df_sparse
+    outcome_name=explore.outcome_name
+    vertical_stack = pd.concat([data_org, data_cf], axis=0)
+
+    #have output be 0/1
+    new_output=[]
+    for i in vertical_stack[outcome_name].values:
+        new_output.append(round(i))
+    vertical_stack[outcome_name]=new_output
+
+
+    labelencoder = LabelEncoder()
+
+    vertical_stack1 = vertical_stack.copy()
+    columns=list(vertical_stack1.columns)
+
+    for i in columns:
+        if i not in explore.cont_feat:
+            vertical_stack1[i]=labelencoder.fit_transform(vertical_stack1[i])
+
+    normalized_vertical_stack1=(vertical_stack1-vertical_stack1.min())/(vertical_stack1.max()-vertical_stack1.min())
+
+    visualize_as_radar.normalized_data=normalized_vertical_stack1
+    columns_touse=[]
+    for i in columns:
+        columns_touse.append(i)
+    columns_touse.append(columns[0])
+    #print(columns_touse)
+
+
+    fig = make_subplots(rows=2, cols=3, specs=[[{'type': 'polar'}]*3]*2)
+    col=[2,3,1,2,3]
+    row=[1,1,2,2,2]
+
+    fig.add_trace(go.Scatterpolar(
+          name = "original instance",
+          r = list(normalized_vertical_stack1.iloc[0]),
+          theta = columns_touse,
+        ), 1, 1)
+
+    for i in range(normalized_vertical_stack1.shape[0]-1):
+        fig.add_trace(go.Scatterpolar(
+          name = "counterfactual",
+          r = list(normalized_vertical_stack1.iloc[i+1]),
+          theta = columns_touse,
+        ), row[i], col[i])
+
+    fig.update_traces(fill='toself')
+
+
+    fig.show()
