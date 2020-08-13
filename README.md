@@ -4,6 +4,7 @@
 
 The Counterfactual Explorer produces and visualizes counterfactual explanations for a given dataset, model, and query_instance. The interface relies on three main libraries: DiCE, ipywidgets, and Plotly. Diverse Counterfactual Explanations (DiCE) generates counterfactual explanations for any Machine Learning model and provides the main functionality for the Counterfactual Explorer tool. Jupyter widgets (ipywidgets) and Plotly provide the front-end interactive interfaces of collapsible checkboxes, sliders, dropdown menus, input boxes, and graphs.
 The interactive selection elements run with interactive_output, which allows features to automatically appear, disappear, and be disabled.
+To learn more about this project, visit https://sites.google.com/nyu.edu/counterfactual-explorer/home.
 
 ## How to Use
 
