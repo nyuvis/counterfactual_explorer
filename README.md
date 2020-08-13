@@ -1,11 +1,5 @@
 # Counterfactual Explorer
 
-To set up for the first time, run `./create-env.sh`. This will create a virtual environment and install the dependencies.
-
-To activate the virtual environment, run `source counterfactual_explorer/bin/activate`.
-
-To deactivate the virtual environment, run `deactivate`.
-
 ## Overview
 
 The Counterfactual Explorer produces and visualizes counterfactual explanations for a given dataset, model, and query_instance. The interface relies on three main libraries: DiCE, ipywidgets, and Plotly. Diverse Counterfactual Explanations (DiCE) generates counterfactual explanations for any Machine Learning model and provides the main functionality for this tool. Jupyter widgets (ipywidgets) and Plotly provide the front-end interactive interfaces of collapsible checkboxes, sliders, dropdown menus, input boxes, and graphs.
@@ -14,7 +8,7 @@ The interactive selection elements run with interactive_output, which allows fea
 
 ## How to Use
 
-Access and download the Counterfactual Explorer through the following link: https://github.com/nyuvis/counterfactual_explorer. Within terminal, navigate to the counterfactual_explorer folder. To set up the project environment and dependencies for the first time, run  `./create-env.sh.`  After the intial setup, run `source counterfactual_explorer/bin/activate` to activate the envionment and deactivate to deactivate it.
+Access and download the Counterfactual Explorer. Within terminal, navigate to the counterfactual_explorer folder. To set up the project environment and dependencies for the first time, run  `./create-env.sh.`  After the intial setup, run `source counterfactual_explorer/bin/activate` to activate the envionment and deactivate to deactivate it.
 
 Within the counterfactual_explorer folder and virtual enviroment, create a jupyter notebook. After loading the dataset and defining the machine learning model, run `import counterfactual_explorer` as cfe.
 
