@@ -8,9 +8,9 @@ To learn more about this project, visit https://sites.google.com/nyu.edu/counter
 
 ## How to Use
 
-Access and download the Counterfactual Explorer. Within terminal, navigate to the counterfactual_explorer folder. To set up the project environment and dependencies for the first time, run  `./create-env.sh.`  After the intial setup, run `source counterfactual_explorer/bin/activate` to activate the envionment and deactivate to deactivate it.
+Access and download the Counterfactual Explorer. Within terminal, navigate to the counterfactual_explorer folder. To set up the project environment and dependencies for the first time, run  `./create-env.sh.`  After the intial setup, run `source counterfactual_explorer/bin/activate` to activate the envionment and `deactivate` to deactivate it.
 
-Within the counterfactual_explorer folder and virtual enviroment, create a jupyter notebook. After loading the dataset and defining the machine learning model, run `import counterfactual_explorer` as cfe.
+Within the counterfactual_explorer folder and virtual enviroment, create a jupyter notebook. After loading the dataset and defining the machine learning model, run `import counterfactual_explorer as cfe`.
 
 The Counterfactual Explorer has five functions, described in more details below: 
 1. **cfe.explore(dataname, modelname,cont_feat,outcome_name)**
